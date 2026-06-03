@@ -1,11 +1,5 @@
 # Test configuration — overrides application.yml
-# Flapdoodle embedded MongoDB is auto-configured when on the classpath.
-spring:
-  data:
-    mongodb:
-      # Let Flapdoodle pick the port; just set the db name
-      database: transitdb-test
-
+# Testcontainers @ServiceConnection auto-configures spring.data.mongodb.uri
 security:
   jwt:
     secret: test-secret-at-least-32-characters-long
