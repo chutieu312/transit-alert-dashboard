@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: transit-alert-dashboard
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/transitdb}
+      database: ${MONGODB_DB:transitdb}
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:transit-demo-secret-change-in-prod-min-32-chars}
+    expiration-ms: 3600000     # 1 hour
+
+logging:
+  level:
+    com.transitdemo: DEBUG
+    org.springframework.security: INFO
+
+# ── Actuator ──────────────────────────────────────────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+# ── Springdoc / Swagger UI ────────────────────────────────────────────────────
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    try-it-out-enabled: true
+    operations-sorter: alpha
